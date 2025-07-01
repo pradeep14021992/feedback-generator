@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trade Feedback Generator – INSTANT Payments</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+      background: #f0f8ff;
+      text-align: center;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    #quote {
+      background: #ffffff;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 700px;
+      font-size: 1.2em;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      white-space: pre-line;
+      transition: opacity 0.4s ease;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 1em;
+      margin: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #generateBtn {
+      background-color: #28a745;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Trade Feedback Generator – INSTANT Payments</h1>
+  <div id="quote">Click "Generate Feedback" to get a heartfelt message with time, date, and emojis!</div>
+  <button id="generateBtn">Generate & Copy Feedback</button>
+
+  <script>
+    const quotes = [
+      "What a fantastic trade! 🏆 Truly a smooth and successful experience. 🤝 Looking forward to many more deals like this! 🌟",
+      "Amazing experience! 🚀 The communication was clear, the deal was seamless, and the energy was so positive. 😊 A true professional! 💯",
+      "This trade was nothing short of perfect! 🌟 Honest, fast, and professional. Thanks for making it so easy and pleasant. 🙏🤗",
+      "A delightful experience! ✨ Truly a professional in every sense – quick, courteous, and respectful. 🔥 You made this easy and fun! 😄",
+      "Another great deal completed! ✅ Thank you for your trust and honesty. 👏 Your business is always appreciated. 😇",
+      "I couldn’t ask for a better trade! 🥇 Your promptness, kindness, and communication were top-notch! 💬 Keep up the great work! 💪",
+      "What a smooth transaction! 💼 Truly a seamless experience with a high level of professionalism. 👏💖 Keep it up! 👍",
+      "A pleasure to work with! 😊 Everything was handled quickly and professionally. Let’s keep this great energy flowing! ✨",
+      "Wonderful trade! 🌺 Excellent communication and smooth execution. 😎 I’m grateful for your professionalism. 🤝",
+      "This was an absolute pleasure! 🙌 You were efficient, kind, and understanding. 🌟 Looking forward to more trades like this! 🔥",
+      "Such a positive experience! 💯 Everything went perfectly, and I appreciate the trust and professionalism. 🙏 Always a joy to work with you! ✨",
+      "Fantastic transaction! 🚀 Thank you for making everything go so smoothly. Your professionalism really stands out. 🌟",
+      "Incredible trade experience! 👏 You made the process feel effortless. Thanks for being so reliable and kind. 😃",
+      "Top-notch experience! 💼 Your honesty and transparency were truly refreshing. 🌈 A fantastic transaction all around. 😇",
+      "Smooth, easy, and trustworthy. 🔥 Another perfect trade! Thank you for your professionalism and positivity! ✨",
+      "I’m so grateful for today’s trade! 🏅 Your communication was flawless, and you made the whole experience enjoyable. 😍",
+      "Great deal with great people! 🏆 Thank you for being so courteous, honest, and professional throughout the process. 🤝",
+      "I’m amazed at how easy and smooth everything was! 😊 You really set the standard for professionalism in business. 💯",
+      "What a wonderful trade! 💎 Professional, efficient, and a great communicator. This was a flawless transaction. 👏🌟",
+      "I appreciate your kindness and understanding throughout the deal. 🌻 This was a great experience, and I look forward to the next one! 🤗",
+      "Another seamless experience! 🌈 Quick, respectful, and efficient – this is what business should always be like. ✨"
+    ];
+
+    function getFormattedDate() {
+      const now = new Date();
+      const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      const dayName = days[now.getDay()];
+      const date = now.toLocaleDateString();
+      const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      return `${dayName}, ${date} at ${time}`;
+    }
+
+    async function generateFeedback() {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const timestamp = getFormattedDate();
+      const companyName = "INSTANT Payments";
+      const fullQuote = `${quotes[randomIndex]}\n\n— Feedback given on ${timestamp}\nBy ${companyName}`;
+
+      const quoteEl = document.getElementById('quote');
+      quoteEl.style.opacity = 0;
+
+      setTimeout(() => {
+        quoteEl.textContent = fullQuote;
+        quoteEl.style.opacity = 1;
+      }, 200);
+
+      try {
+        await navigator.clipboard.writeText(fullQuote);
+      } catch (err) {
+        console.error("Clipboard error:", err);
+      }
+    }
+
+    document.getElementById('generateBtn').addEventListener('click', generateFeedback);
+  </script>
+
+</body>
+</html>
